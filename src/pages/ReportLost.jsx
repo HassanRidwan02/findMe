@@ -50,12 +50,16 @@ export default function ReportLost() {
 
       {/* Item Name */}
       <div>
-        <label className="block mb-2 font-medium">
+        <label className="block mb-2 font-medium" htmlFor="name">
           Item Name <span className="text-red-500">*</span>
         </label>
 
         <input
           type="text"
+          id="name"
+          name="itemName"
+          value={formData.itemName}
+          onChange={handleChange}
           placeholder="e.g. iPhone 12"
           className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
         />
@@ -63,7 +67,11 @@ export default function ReportLost() {
 
       {/* Category */}
       <div>
-        <label className="block mb-2 font-medium">
+        <label 
+          className="block mb-2 font-medium"
+          name={formData.category}
+          onChange={handleChange}
+        >
           Category <span className="text-red-500">*</span>
         </label>
 
@@ -79,7 +87,11 @@ export default function ReportLost() {
 
       {/* Description */}
       <div>
-        <label className="block mb-2 font-medium">
+        <label 
+          className="block mb-2 font-medium"
+          name={formData.description}
+          onChange={handleChange}
+        >
           Description <span className="text-red-500">*</span>
         </label>
 
@@ -94,13 +106,18 @@ export default function ReportLost() {
       <div className="grid md:grid-cols-2 gap-6">
 
         <div>
-          <label className="block mb-2 font-medium">
+          <label 
+            className="block mb-2 font-medium"
+          >
             Location Lost
           </label>
 
           <input
             type="text"
+            name="location"
             placeholder="Where did you lose it?"
+            value={formData.location}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
           />
         </div>
@@ -112,7 +129,11 @@ export default function ReportLost() {
 
           <input
             type="date"
+            name="dateLost"
+            value={formData.dateLost}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
+            required
           />
         </div>
 
