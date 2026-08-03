@@ -37,12 +37,12 @@ export default function ReportFound() {
     </button>
 
     <div className="flex items-center justify-center gap-4 mb-10">
-      <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-2xl">
-        🎒
+      <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center text-2xl">
+        📗
       </div>
 
       <h1 className="text-3xl font-bold text-gray-800">
-        Report Lost Item
+        Report Found Item
       </h1>
     </div>
 
