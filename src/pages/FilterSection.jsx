@@ -116,18 +116,18 @@ export default function FilterSection() {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              className="relative overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
 
-              <span
-                className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${
-                  item.type === "lost"
-                    ? "bg-red-100 text-red-700"
-                    : "bg-green-100 text-green-700"
-                }`}
-              >
-                {item.type}
-              </span>
+                <span
+                  className={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-semibold uppercase ${
+                    item.type === "lost"
+                      ? "bg-red-100 text-red-700"
+                      : "bg-green-100 text-green-700"
+                  }`}
+                >
+                  {item.type}
+                </span>
               <img
                 src={item.image}
                 alt={item.name}

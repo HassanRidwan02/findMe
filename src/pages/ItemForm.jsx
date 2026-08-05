@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 
-export default function ItemForm({report, submit}) {
+export default function ItemForm({report, submit, emoji, color, bgcolor, hover}) 
+{
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     itemName: "",
     category: "",
@@ -28,17 +32,21 @@ export default function ItemForm({report, submit}) {
     // Later I'll send this data to your backend
   }
 
+
   return (
    <div className="min-h-screen bg-gray-100 py-10 px-4">
   <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
 
-    <button className="text-gray-600 hover:text-blue-600 mb-8">
+    <button 
+      className="text-gray-600 hover:text-blue-600 mb-8"
+      onClick={() => navigate('/')}
+    >
       ← Back
     </button>
 
     <div className="flex items-center justify-center gap-4 mb-10">
-      <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center text-2xl">
-        📗
+      <div className={`w-14 h-14 rounded-full ${color} flex items-center justify-center text-2xl`}>
+        {emoji}
       </div>
 
       <h1 className="text-3xl font-bold text-gray-800">
@@ -173,7 +181,7 @@ export default function ItemForm({report, submit}) {
       </div>
 
       <button
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition"
+        className={`w-full ${bgcolor} hover:bg-${hover}-700 text-white py-3 rounded-lg font-semibold transition`}
       >
         {submit}
       </button>
