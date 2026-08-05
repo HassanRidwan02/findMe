@@ -14,6 +14,7 @@ export default function FilterSection() {
       date: "23-03-2026",
       image: "https://placehold.co/600x400",
       email: "wallet@example.com",
+      type: 'lost'
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ export default function FilterSection() {
       date: "23-03-2026",
       image: "https://placehold.co/600x400",
       email: "iphone12@example.com",
+      type: 'found'
     },
     {
       id: 3,
@@ -36,6 +38,7 @@ export default function FilterSection() {
       date: "25-03-2026",
       image: "https://placehold.co/600x400",
       email: "iphone15@example.com",
+      type: 'lost'
     },
     {
       id: 4,
@@ -47,6 +50,7 @@ export default function FilterSection() {
       date: "24-03-2026",
       image: "https://placehold.co/600x400",
       email: "id@example.com",
+      type: 'lost'
     },
     {
       id: 5,
@@ -58,6 +62,7 @@ export default function FilterSection() {
       date: "20-03-2026",
       image: "https://placehold.co/600x400",
       email: "charger@example.com",
+      type: 'found'
     },
   ];
 
@@ -113,6 +118,16 @@ export default function FilterSection() {
               key={item.id}
               className="overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
+
+              <span
+                className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${
+                  item.type === "lost"
+                    ? "bg-red-100 text-red-700"
+                    : "bg-green-100 text-green-700"
+                }`}
+              >
+                {item.type}
+              </span>
               <img
                 src={item.image}
                 alt={item.name}
