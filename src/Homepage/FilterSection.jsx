@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function FilterSection() {
   const [category, setCategory] = useState("all");
+  const [selectedItem, setSelectedItem] = useState(null)
 
   const items = [
     {
@@ -168,7 +169,10 @@ export default function FilterSection() {
                   </p>
                 </div>
 
-                <button className="mt-6 w-full rounded-lg bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700">
+                <button 
+                  className="mt-6 w-full rounded-lg bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700"
+                  onClick={() => setSelectedItem(item)}
+                >
                   View Details
                 </button>
               </div>
