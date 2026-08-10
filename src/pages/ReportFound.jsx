@@ -1,4 +1,4 @@
-import ItemForm from './ItemForm'
+import ItemForm from '../Form/ItemForm'
 
 export default function ReportFound(){
   return (<ItemForm 

@@ -1,7 +1,7 @@
-import Navbar from '../Navbar.jsx'
+import Navbar from '../Homepage/Navbar.jsx'
 
-import HeroSection from './HeroSection'
-import FilterSection from './FilterSection'
+import HeroSection from '../Homepage/HeroSection'
+import FilterSection from '../Homepage/FilterSection'
 
 export default function Home(){
     return (
