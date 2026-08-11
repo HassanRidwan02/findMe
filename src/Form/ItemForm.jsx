@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 
-export default function ItemForm({report, submit, emoji, color, bgcolor, hover}) 
+export default function ItemForm({report, submit, emoji, color, bgcolor, hover, items, setItems}) 
 {
   const navigate = useNavigate()
 
@@ -15,6 +15,7 @@ export default function ItemForm({report, submit, emoji, color, bgcolor, hover})
     email: "",
   });
 
+
   function handleChange(event) {
     const { name, value, files } = event.target;
 
@@ -24,13 +25,29 @@ export default function ItemForm({report, submit, emoji, color, bgcolor, hover})
     }));
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+function handleSubmit(event) {
+  event.preventDefault();
 
-    console.log(formData);
+  const newItem = {
+    id: Date.now(),
+    name: formData.itemName,
+    category: formData.category,
+    description: formData.description,
+    location: formData.location,
+    date: formData.dateLost,
+    image: formData.image,
+    email: formData.email,
+    type: report.includes("Lost") ? "lost" : "found",
+  };
 
-    // Later I'll send this data to your backend
-  }
+  setItems((prevItems) => {
+    const updatedItems = [...prevItems, newItem];
+    console.log("Updated items:", updatedItems);
+    return updatedItems;
+  });
+
+  navigate("/");
+}
 
 
   return (
@@ -75,21 +92,22 @@ export default function ItemForm({report, submit, emoji, color, bgcolor, hover})
 
       {/* Category */}
       <div>
-        <label 
-          className="block mb-2 font-medium"
-          name={formData.category}
-          onChange={handleChange}
-        >
-          Category <span className="text-red-500">*</span>
-        </label>
+      <label className="block mb-2 font-medium">
+        Category <span className="text-red-500">*</span>
+      </label>
 
-        <select className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none">
-          <option>Select Category</option>
-          <option>Phone</option>
-          <option>Laptop</option>
-          <option>Wallet</option>
-          <option>Bag</option>
-          <option>Other</option>
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
+        >
+          <option value="">Select Category</option>
+          <option value="phone">Phone</option>
+          <option value="laptop">Laptop</option>
+          <option value="wallet">Wallet</option>
+          <option value="bag">Bag</option>
+          <option value="other">Other</option>
         </select>
       </div>
 
@@ -97,15 +115,16 @@ export default function ItemForm({report, submit, emoji, color, bgcolor, hover})
       <div>
         <label 
           className="block mb-2 font-medium"
-          name={formData.description}
-          onChange={handleChange}
         >
           Description <span className="text-red-500">*</span>
         </label>
 
         <textarea
+          name="description"
           rows="5"
           placeholder="Describe the item in detail..."
+          value={formData.description}
+          onChange={handleChange}
           className="w-full border border-gray-300 rounded-lg px-4 py-3 resize-none focus:ring-2 focus:ring-blue-500 outline-none"
         ></textarea>
       </div>
@@ -157,6 +176,8 @@ export default function ItemForm({report, submit, emoji, color, bgcolor, hover})
 
           <input
             type="file"
+            name='image'
+            onChange={handleChange}
             className="w-full"
           />
 
@@ -175,12 +196,16 @@ export default function ItemForm({report, submit, emoji, color, bgcolor, hover})
 
         <input
           type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
           placeholder="your@email.com"
           className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
         />
       </div>
 
       <button
+        type='submit'
         className={`w-full ${bgcolor} hover:bg-${hover}-700 text-white py-3 rounded-lg font-semibold transition`}
       >
         {submit}

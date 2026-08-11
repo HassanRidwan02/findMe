@@ -6,7 +6,7 @@ import FilterSection from '../Homepage/FilterSection'
 export default function Home(){
     return (
         <>
-            {/* <Navbar /> */}
+            <Navbar />
 
             <HeroSection />
             <FilterSection />
