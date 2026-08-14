@@ -29,7 +29,7 @@ function handleSubmit(event) {
   event.preventDefault();
 
   const newItem = {
-    id: Date.now(),
+    id: items.length + 1,
     name: formData.itemName,
     category: formData.category,
     description: formData.description,

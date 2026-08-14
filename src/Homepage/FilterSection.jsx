@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { items } from '../data.js'
+// import { items } from '../data.js'
 import {Link} from 'react-router-dom'
 
-export default function FilterSection() {
+export default function FilterSection({items}) {
   const [category, setCategory] = useState("all");
   const [selectedItem, setSelectedItem] = useState(null)
 

@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home items={items} />} />
 
         <Route
           path="/lost"

@@ -3,13 +3,13 @@ import Navbar from '../Homepage/Navbar.jsx'
 import HeroSection from '../Homepage/HeroSection'
 import FilterSection from '../Homepage/FilterSection'
 
-export default function Home(){
+export default function Home({items}){
     return (
         <>
             <Navbar />
 
             <HeroSection />
-            <FilterSection />
+            <FilterSection items={items} />
         </>
     )
 }
