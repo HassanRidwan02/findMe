@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -11,7 +11,15 @@ import ItemDetails from "./ItemDetails.jsx";
 import Footer from "./Homepage/Footer.jsx";
 
 function App() {
-  const [items, setItems] = useState(initialItems);
+    const [items, setItems] = useState(() => {
+    const savedItems = localStorage.getItem("totalItems");
+
+    return savedItems ? JSON.parse(savedItems) : initialItems;
+  });
+
+  useEffect(() => {
+  localStorage.setItem("totalItems", JSON.stringify(items));
+}, [items]);
 
   return (
     <>
