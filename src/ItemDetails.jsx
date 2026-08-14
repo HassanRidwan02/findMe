@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
-import { items } from "./data.js";
+// import { items } from "./data.js";
 
-export default function ItemDetails() {
+export default function ItemDetails({items}) {
 
     const navigate = useNavigate()
     
