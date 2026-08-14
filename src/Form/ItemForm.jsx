@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { findPotentialMatches } from "../services/aiservices.js";
 import { useNavigate } from 'react-router-dom'
 
 export default function ItemForm({report, submit, emoji, color, bgcolor, hover, items, setItems}) 
 {
   const navigate = useNavigate()
 
+  const [matches, setMatches] = useState([]);
   const [formData, setFormData] = useState({
     itemName: "",
     category: "",
@@ -25,11 +27,13 @@ export default function ItemForm({report, submit, emoji, color, bgcolor, hover, 
     }));
   }
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault();
 
+  console.log("1. SUBMIT FUNCTION RUNNING");
+
   const newItem = {
-    id: items.length + 1,
+    id: Date.now(),
     name: formData.itemName,
     category: formData.category,
     description: formData.description,
@@ -40,13 +44,50 @@ function handleSubmit(event) {
     type: report.includes("Lost") ? "lost" : "found",
   };
 
+  console.log("2. NEW ITEM:", newItem);
+  console.log("3. ITEM TYPE:", newItem.type);
+
   setItems((prevItems) => {
     const updatedItems = [...prevItems, newItem];
-    console.log("Updated items:", updatedItems);
+
+    console.log("4. UPDATED ITEMS:", updatedItems);
+
     return updatedItems;
   });
 
-  navigate("/");
+  if (newItem.type === "found") {
+    console.log("5. THIS IS A FOUND ITEM");
+
+    const lostItems = items.filter(
+      (item) =>
+        item.type === "lost" &&
+        item.category === newItem.category
+    );
+
+    console.log("6. LOST ITEMS FOUND:", lostItems);
+
+    if (lostItems.length === 0) {
+      console.log("7. NO LOST ITEMS TO COMPARE");
+      navigate("/");
+      return;
+    }
+
+    try {
+      console.log("8. CALLING GROQ...");
+
+      const result = await findPotentialMatches(
+        newItem,
+        lostItems
+      );
+
+      console.log("9. GROQ RESPONSE:", result);
+      console.log("10. POTENTIAL MATCHES:", result.matches);
+    } catch (error) {
+      console.error("11. AI MATCHING FAILED:", error);
+    }
+  }
+
+  // navigate("/");
 }
 
 
