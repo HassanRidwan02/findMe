@@ -37,7 +37,7 @@ export default function FilterSection({ items = [] }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
+        <div className=" scroll-mt-24 bg-slate-50 py-16 mx-auto max-w-2xl text-center" id="browse-items">
           <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-1.5 text-sm font-semibold text-blue-700">
             Lost & Found
           </span>

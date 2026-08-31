@@ -10,6 +10,8 @@ import ReportFound from "./pages/ReportFound.jsx";
 import ItemDetails from "./ItemDetails.jsx";
 import Footer from "./Homepage/Footer.jsx";
 
+import ScrollToHash from "./Homepage/ScrollToHash.jsx"
+
 function App() {
     const [items, setItems] = useState(() => {
     const savedItems = localStorage.getItem("totalItems");
@@ -23,7 +25,10 @@ function App() {
 
   return (
     <>
+      {/* <ScrollToHash /> */}
       <Routes>
+
+
         <Route path="/" element={<Home items={items} />} />
 
         <Route

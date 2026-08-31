@@ -1,15 +1,29 @@
-import Navbar from '../Homepage/Navbar.jsx'
+import { useRef } from "react";
 
-import HeroSection from '../Homepage/HeroSection'
-import FilterSection from '../Homepage/FilterSection'
+import Navbar from "../Homepage/Navbar"
+import HeroSection from "../Homepage/HeroSection";
+import FilterSection from "../Homepage/FilterSection";
 
-export default function Home({items}){
-    return (
-        <>
-            <Navbar />
+export default function Home({ items }) {
+  const filterRef = useRef(null);
 
-            <HeroSection />
+  function scrollToItems() {
+    filterRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
+  return (
+    <>
+
+
+         <Navbar />
+        <HeroSection onBrowseItems={scrollToItems} />
+
+        <div ref={filterRef}>
             <FilterSection items={items} />
+        </div>
         </>
-    )
+  );
 }

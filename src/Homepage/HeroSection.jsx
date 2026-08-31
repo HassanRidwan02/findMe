@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function HeroSection() {
+export default function HeroSection({onBrowseItems}) {
   const recentItems = [
     {
       icon: Smartphone,
@@ -119,8 +119,9 @@ export default function HeroSection() {
 
           {/* CTA */}
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              to="/"
+            <button
+              type="button"
+              onClick={onBrowseItems}
               className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 shadow-xl shadow-black/10 transition duration-300 hover:-translate-y-0.5 hover:bg-sky-50"
             >
               Browse Items
@@ -129,7 +130,7 @@ export default function HeroSection() {
                 size={17}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
-            </Link>
+            </button>
           </div>
 
           {/* Trust Indicators */}
