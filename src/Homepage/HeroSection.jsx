@@ -224,7 +224,7 @@ export default function HeroSection({onBrowseItems}) {
             <div className="mt-5 flex items-center justify-between rounded-2xl bg-sky-500/[0.06] p-4">
               <div>
                 <p className="text-xs text-slate-500">
-                  Need to report something?
+                  Need to report?
                 </p>
 
                 <p className="mt-1 text-sm font-medium text-white">
